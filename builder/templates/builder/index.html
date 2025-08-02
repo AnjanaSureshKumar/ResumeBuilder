@@ -1,0 +1,637 @@
+{% load static %}
+
+<!-- Load utility scripts first -->
+<script src="{% static 'js/constants.js' %}"></script>
+<script src="{% static 'js/utils.js' %}"></script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Build Your Resume Instantly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&family=Lato:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-content">
+                <!-- Logo -->
+                <div class="nav-logo">
+                    <div class="logo-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                    </div>
+                    <span class="logo-text">ResumeBuilder</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="nav-links desktop-nav">
+                    <button class="nav-link active" data-page="home">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                        <span>Home</span>
+                    </button>
+                    <button class="nav-link" data-page="templates">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10,9 9,9 8,9"/>
+                        </svg>
+                        <span>Create Resume</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="mobile-menu-btn">
+                    <button class="menu-toggle">
+                        <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="4" y1="6" x2="20" y2="6"/>
+                            <line x1="4" y1="12" x2="20" y2="12"/>
+                            <line x1="4" y1="18" x2="20" y2="18"/>
+                        </svg>
+                        <svg class="close-icon hidden" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav">
+                <button class="nav-link active" data-page="home">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9,22 9,12 15,12 15,22"/>
+                    </svg>
+                    <span>Home</span>
+                </button>
+                <button class="nav-link" data-page="templates">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14,2 14,8 20,8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10,9 9,9 8,9"/>
+                    </svg>
+                    <span>Create Resume</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="hero-section">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="hero-title">
+                            Build Your Resume <span class="text-primary">Instantly</span>
+                        </h1>
+                        <p class="hero-description">
+                            Create a professional resume that stands out with our easy-to-use builder. 
+                            Choose from beautiful templates and land your dream job faster.
+                        </p>
+                        
+                        <div class="hero-buttons">
+                            <button class="btn-primary btn-lg" data-navigate="templates">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14,2 14,8 20,8"/>
+                                </svg>
+                                Start Creating
+                            </button>
+                        </div>
+
+                        <!-- Stats -->
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="9" cy="7" r="4"/>
+                                        <path d="m22 21-3-3m0 0-3-3m3 3 3-3m-3 3-3 3"/>
+                                    </svg>
+                                    50K+
+                                </div>
+                                <div class="stat-label">Resumes Created</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/>
+                                    </svg>
+                                    95%
+                                </div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <polyline points="12,6 12,12 16,14"/>
+                                    </svg>
+                                    24/7
+                                </div>
+                                <div class="stat-label">Available</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Features -->
+                    <div class="features-section">
+                        <h2>Why Choose Our Resume Builder?</h2>
+                        <p class="section-description">Everything you need to create a standout resume that gets you hired</p>
+                        
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/>
+                                    </svg>
+                                </div>
+                                <h3>Lightning Fast</h3>
+                                <p>Create professional resumes in minutes, not hours</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="7,10 12,15 17,10"/>
+                                        <line x1="12" y1="15" x2="12" y2="3"/>
+                                    </svg>
+                                </div>
+                                <h3>Instant Download</h3>
+                                <p>Download your resume as PDF immediately</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/>
+                                    </svg>
+                                </div>
+                                <h3>Professional Templates</h3>
+                                <p>Choose from expertly designed templates</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- How It Works -->
+                    <div class="how-it-works">
+                        <h2>How It Works</h2>
+                        <p class="section-description">Get your professional resume ready in just three simple steps</p>
+                        
+                        <div class="steps-grid">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <h3>Choose Template</h3>
+                                <p>Pick from our collection of professional templates</p>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <h3>Fill Details</h3>
+                                <p>Add your information using our guided form</p>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <h3>Download</h3>
+                                <p>Get your professional resume instantly</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Section -->
+                    <div class="cta-section">
+                        <div class="cta-card">
+                            <h2>Ready to Get Started?</h2>
+                            <p>Join thousands of professionals who have built their careers with our resume builder.</p>
+                            <button class="btn-secondary btn-lg" data-navigate="templates">
+                                Create Your Resume Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Templates Page -->
+        <div id="templates-page" class="page">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Choose Your Template</h1>
+                    <p>Select from our collection of professionally designed resume templates. Each template is optimized for readability and ATS compatibility.</p>
+                </div>
+
+                <div class="templates-grid">
+                    <!-- Classic Template -->
+                    <div class="template-card" data-template="classic">
+                        <div class="template-preview">
+                            <div class="template-badge popular">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/>
+                                </svg>
+                                Popular
+                            </div>
+                            <div class="classic-preview">
+                                <div class="classic-header">
+                                    <div class="classic-name">JOHN DOE</div>
+                                    <div class="classic-contact">email • phone • location</div>
+                                </div>
+                                <div class="classic-section">
+                                    <div class="classic-section-title">EXPERIENCE</div>
+                                    <div class="classic-item">
+                                        <div class="classic-job-title">Software Developer</div>
+                                        <div class="classic-company">Tech Company</div>
+                                    </div>
+                                </div>
+                                <div class="classic-section">
+                                    <div class="classic-section-title">SKILLS</div>
+                                    <div class="classic-skills">JavaScript, React, Node.js</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Classic</h3>
+                            <p>Traditional design perfect for conservative industries</p>
+                            <button class="btn-primary template-select">Select Template</button>
+                        </div>
+                    </div>
+
+                    <!-- Modern Template -->
+                    <div class="template-card" data-template="modern">
+                        <div class="template-preview">
+                            <div class="template-badge popular">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/>
+                                </svg>
+                                Popular
+                            </div>
+                            <div class="modern-preview">
+                                <div class="modern-header">
+                                    <div class="modern-name">John Doe</div>
+                                    <div class="modern-contact">📧 email • 📞 phone • 📍 location</div>
+                                </div>
+                                <div class="modern-body">
+                                    <div class="modern-section">
+                                        <div class="modern-section-title">Professional Experience</div>
+                                        <div class="modern-item">
+                                            <div class="modern-job-title">Software Developer</div>
+                                            <div class="modern-company">Tech Company</div>
+                                        </div>
+                                    </div>
+                                    <div class="modern-section">
+                                        <div class="modern-section-title">Skills</div>
+                                        <div class="modern-skills">
+                                            <span class="modern-skill">JS</span>
+                                            <span class="modern-skill">React</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Modern</h3>
+                            <p>Clean and contemporary design for tech professionals</p>
+                            <button class="btn-primary template-select">Select Template</button>
+                        </div>
+                    </div>
+
+                    <!-- Minimal Template -->
+                    <div class="template-card" data-template="minimal">
+                        <div class="template-preview">
+                            <div class="minimal-preview">
+                                <div class="minimal-header">
+                                    <div class="minimal-name">John Doe</div>
+                                    <div class="minimal-contact">email • phone • location</div>
+                                </div>
+                                <div class="minimal-section">
+                                    <div class="minimal-section-title">EXPERIENCE</div>
+                                    <div class="minimal-item">
+                                        <div class="minimal-job-title">Software Developer</div>
+                                        <div class="minimal-company">Tech Company</div>
+                                    </div>
+                                </div>
+                                <div class="minimal-section">
+                                    <div class="minimal-section-title">SKILLS</div>
+                                    <div class="minimal-skills">JavaScript • React • Node.js</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Minimal</h3>
+                            <p>Simple and elegant with plenty of white space</p>
+                            <button class="btn-primary template-select">Select Template</button>
+                        </div>
+                    </div>
+
+                    <!-- Elegant Template -->
+                    <div class="template-card" data-template="elegant">
+                        <div class="template-preview">
+                            <div class="elegant-preview">
+                                <div class="elegant-sidebar">
+                                    <div class="elegant-sidebar-content">
+                                        <div class="elegant-name">John Doe</div>
+                                        <div class="elegant-contact">
+                                            <div>📧 email</div>
+                                            <div>📞 phone</div>
+                                        </div>
+                                        <div class="elegant-skills-section">
+                                            <div class="elegant-section-title">Skills</div>
+                                            <div class="elegant-skill-item">• JavaScript</div>
+                                            <div class="elegant-skill-item">• React</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="elegant-main">
+                                    <div class="elegant-section">
+                                        <div class="elegant-main-title">Experience</div>
+                                        <div class="elegant-experience-item">
+                                            <div class="elegant-bullet">•</div>
+                                            <div>
+                                                <div class="elegant-job-title">Software Developer</div>
+                                                <div class="elegant-company">Tech Company</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Elegant</h3>
+                            <p>Sophisticated design for executive positions</p>
+                            <button class="btn-primary template-select">Select Template</button>
+                        </div>
+                    </div>
+
+                    <!-- Tech Template -->
+                    <div class="template-card" data-template="tech">
+                        <div class="template-preview">
+                            <div class="tech-preview">
+                                <div class="tech-header">
+                                    <div class="tech-terminal">
+                                        <div class="tech-buttons">
+                                            <div class="tech-btn red"></div>
+                                            <div class="tech-btn yellow"></div>
+                                            <div class="tech-btn green"></div>
+                                        </div>
+                                        <div class="tech-command">$ whoami</div>
+                                        <div class="tech-output">&gt; John Doe</div>
+                                    </div>
+                                </div>
+                                <div class="tech-body">
+                                    <div class="tech-command">$ ls experience/</div>
+                                    <div class="tech-folder">drwxr-xr-x tech_company/</div>
+                                    <div class="tech-comment"># Developer</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Tech</h3>
+                            <p>Dark theme optimized for developers</p>
+                            <button class="btn-primary template-select">Select Template</button>
+                        </div>
+                    </div>
+
+                    <!-- Creative Template -->
+                    <div class="template-card" data-template="creative">
+                        <div class="template-preview">
+                            <div class="creative-preview">
+                                <div class="creative-shapes">
+                                    <div class="creative-circle"></div>
+                                </div>
+                                <div class="creative-content">
+                                    <div class="creative-name">John Doe</div>
+                                    <div class="creative-contact">
+                                        <span class="creative-tag">email</span>
+                                        <span class="creative-tag">phone</span>
+                                    </div>
+                                    <div class="creative-section">
+                                        <div class="creative-section-title">Experience</div>
+                                        <div class="creative-job-title">Software Developer</div>
+                                        <div class="creative-company">Tech Company</div>
+                                    </div>
+                                    <div class="creative-skills">
+                                        <span class="creative-skill">JS</span>
+                                        <span class="creative-skill">React</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Creative</h3>
+                            <p>Bold and colorful for creative professionals</p>
+                            <button class="btn-primary template-select">Select Template</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Help Section -->
+                <div class="template-help">
+                    <div class="help-card">
+                        <h2>Need Help Choosing?</h2>
+                        <p>Our Modern template is perfect for most industries and positions. It strikes the right balance between professional and contemporary design.</p>
+                        <button class="btn-primary btn-lg" data-template="modern">
+                            Start with Modern Template
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume Editor Page -->
+        <div id="editor-page" class="page">
+            <div class="container">
+                <div class="editor-header">
+                    <div class="editor-title">
+                        <h1>Resume Editor</h1>
+                        <p>Customize your resume and see live preview</p>
+                    </div>
+                    <div class="editor-controls">
+                        <div class="control-group">
+                            <select id="font-selector" class="form-select">
+                                <option value="Inter">Inter</option>
+                                <option value="Roboto">Roboto</option>
+                                <option value="Open Sans">Open Sans</option>
+                                <option value="Lato">Lato</option>
+                            </select>
+                            <select id="color-selector" class="form-select">
+                                <option value="#FF6B35">Orange</option>
+                                <option value="#FF7F50">Coral</option>
+                                <option value="#FF8C42">Tangerine</option>
+                                <option value="#FF4500">Red Orange</option>
+                                <option value="#FF9500">Amber</option>
+                                <option value="#E85D00">Dark Orange</option>
+                            </select>
+                        </div>
+                        <button class="btn-primary" id="download-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7,10 12,15 17,10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                            Download PDF
+                        </button>
+                    </div>
+                </div>
+
+                <div class="editor-layout">
+                    <!-- Editor Sidebar -->
+                    <div class="editor-sidebar">
+                        <div class="editor-tabs">
+                            <button class="tab-btn active" data-tab="personal">Personal</button>
+                            <button class="tab-btn" data-tab="experience">Experience</button>
+                            <button class="tab-btn" data-tab="education">Education</button>
+                            <button class="tab-btn" data-tab="skills">Skills</button>
+                            <button class="tab-btn" data-tab="projects">Projects</button>
+                        </div>
+
+                        <!-- Personal Information Tab -->
+                        <div id="personal-tab" class="tab-content active">
+                            <h3>Personal Information</h3>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" id="fullName" class="form-input" value="John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" class="form-input" value="john.doe@email.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="tel" id="phone" class="form-input" value="+1 (555) 123-4567">
+                                </div>
+                                <div class="form-group">
+                                    <label for="location">Location</label>
+                                    <input type="text" id="location" class="form-input" value="New York, NY">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="website">Website</label>
+                                    <input type="url" id="website" class="form-input" value="www.johndoe.com">
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="summary">Professional Summary</label>
+                                    <textarea id="summary" class="form-textarea" rows="4">Experienced software developer with 5+ years of expertise in full-stack development.</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience Tab -->
+                        <div id="experience-tab" class="tab-content">
+                            <div class="section-header">
+                                <h3>Work Experience</h3>
+                                <button class="btn-secondary btn-sm" id="add-experience">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="5" x2="12" y2="19"/>
+                                        <line x1="5" y1="12" x2="19" y2="12"/>
+                                    </svg>
+                                    Add Experience
+                                </button>
+                            </div>
+                            <div id="experience-list" class="items-list">
+                                <!-- Experience items will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Education Tab -->
+                        <div id="education-tab" class="tab-content">
+                            <div class="section-header">
+                                <h3>Education</h3>
+                                <button class="btn-secondary btn-sm" id="add-education">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="5" x2="12" y2="19"/>
+                                        <line x1="5" y1="12" x2="19" y2="12"/>
+                                    </svg>
+                                    Add Education
+                                </button>
+                            </div>
+                            <div id="education-list" class="items-list">
+                                <!-- Education items will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Skills Tab -->
+                        <div id="skills-tab" class="tab-content">
+                            <h3>Skills</h3>
+                            <div class="skills-input-section">
+                                <label for="skill-input">Add Skills</label>
+                                <div class="skills-input-group">
+                                    <input type="text" id="skill-input" class="form-input" placeholder="Type a skill and press Enter">
+                                    <button class="btn-secondary" id="add-skill">Add</button>
+                                </div>
+                            </div>
+                            <div id="skills-list" class="skills-tags">
+                                <!-- Skills will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Projects Tab -->
+                        <div id="projects-tab" class="tab-content">
+                            <div class="section-header">
+                                <h3>Projects</h3>
+                                <button class="btn-secondary btn-sm" id="add-project">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <line x1="12" y1="5" x2="12" y2="19"/>
+                                        <line x1="5" y1="12" x2="19" y2="12"/>
+                                    </svg>
+                                    Add Project
+                                </button>
+                            </div>
+                            <div id="projects-list" class="items-list">
+                                <!-- Projects will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resume Preview -->
+                    <div class="resume-preview-container">
+                        <div class="preview-header">
+                            <h3>Preview</h3>
+                            <div class="template-selector">
+                                <label for="template-change">Template:</label>
+                                <select id="template-change" class="form-select">
+                                    <option value="classic">Classic</option>
+                                    <option value="modern" selected>Modern</option>
+                                    <option value="minimal">Minimal</option>
+                                    <option value="elegant">Elegant</option>
+                                    <option value="tech">Tech</option>
+                                    <option value="creative">Creative</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="resume-preview" id="resume-preview">
+                            <!-- Resume preview will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts - Load templates first, then main script -->
+    <script src="{% static 'js/templates/classic.js' %}"></script>
+    <script src="{% static 'js/templates/modern.js' %}"></script>
+    <script src="{% static 'js/templates/minimal.js' %}"></script>
+    <script src="{% static 'js/templates/elegant.js' %}"></script>
+    <script src="{% static 'js/templates/tech.js' %}"></script>
+    <script src="{% static 'js/templates/creative.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
