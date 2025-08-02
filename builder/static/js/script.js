@@ -631,12 +631,50 @@ function setupEventListeners() {
     }
     
     // Download button
-    const downloadBtn = document.getElementById('download-btn');
-    if (downloadBtn) {
-        downloadBtn.addEventListener('click', () => {
-            alert('PDF download functionality would be implemented here with a PDF generation library like jsPDF.');
-        });
-    }
+     document.getElementById("download-btn").addEventListener("click", async () => {
+  const { jsPDF } = window.jspdf;
+  const resumeElement = document.getElementById("resume-preview");
+
+  // Temporarily remove max-height and scroll restrictions
+  const originalMaxHeight = resumeElement.style.maxHeight;
+  const originalOverflowY = resumeElement.style.overflowY;
+  resumeElement.style.maxHeight = "none";
+  resumeElement.style.overflowY = "visible";
+
+  const canvas = await html2canvas(resumeElement, {
+    scale: 2,
+    scrollY: -window.scrollY,
+  });
+
+  // Restore original styles
+  resumeElement.style.maxHeight = originalMaxHeight;
+  resumeElement.style.overflowY = originalOverflowY;
+
+  const imgData = canvas.toDataURL("image/png");
+  const pdf = new jsPDF("p", "mm", "a4");
+
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  const margin = 10;
+  const pdfWidth = pageWidth - margin * 2;
+  const pdfHeight = pageHeight - margin * 2;
+
+  // Calculate image dimensions maintaining aspect ratio, but fit inside page width and height
+  let imgWidth = pdfWidth;
+  let imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+  if (imgHeight > pdfHeight) {
+    imgHeight = pdfHeight;
+    imgWidth = (canvas.width * imgHeight) / canvas.height;
+  }
+
+  const x = (pageWidth - imgWidth) / 2;
+  const y = (pageHeight - imgHeight) / 2;
+
+  pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
+  pdf.save("resume.pdf");
+});
 }
 
 // Initialize Application
